@@ -21,7 +21,11 @@ class ExiftoolCli < Formula
     (bin/"exiftool-cli").write <<~SCRIPT
       #!/bin/bash
       export PYTHONPATH="#{libexec}:#{src_dir}/src"
-      exec #{Formula["python@3.11"].opt_bin}/python3.11 -m exiftool_cli.cli "$@"
+      if [ $# -eq 0 ]; then
+        exec #{Formula["python@3.11"].opt_bin}/python3.11 -c "from exiftool_cli.cli import main_interactive; main_interactive()"
+      else
+        exec #{Formula["python@3.11"].opt_bin}/python3.11 -m exiftool_cli.cli "$@"
+      fi
     SCRIPT
     chmod 0555, bin/"exiftool-cli"
 
