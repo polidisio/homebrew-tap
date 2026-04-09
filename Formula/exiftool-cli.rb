@@ -6,6 +6,7 @@ class ExiftoolCli < Formula
   version "HEAD"
 
   depends_on "python@3.11"
+  depends_on "tcl-tk"
 
   def install
     libexec.mkpath
