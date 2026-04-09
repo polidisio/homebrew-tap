@@ -18,7 +18,7 @@ class Bigfiles < Formula
     (bin/"bigfiles").write <<~SCRIPT
       #!/bin/bash
       # BigFiles - Find large files on your Mac
-      export PYTHONPATH="#libexec/bigfiles-0.1.0"
+      export PYTHONPATH="#{libexec}/bigfiles-0.1.0"
       exec /opt/homebrew/opt/python@3.11/bin/python3.11 -m bigfiles.cli "$@"
     SCRIPT
     chmod 0555, bin/"bigfiles"
@@ -40,6 +40,6 @@ class Bigfiles < Formula
   end
 
   test do
-    assert_match "BigFiles" shell_output("#{bin}/bigfiles 2>&1")
+    assert_match "BigFiles", shell_output("#{bin}/bigfiles 2>&1")
   end
 end
